@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDate;
+import java.util.Date;
+
 @RestController
     @RequestMapping("/jsonRabbit")
 public class MessageJsonController {
@@ -21,9 +24,10 @@ public class MessageJsonController {
     }
 
 
-    @PostMapping("/publish")
+        @PostMapping("/publish")
     public ResponseEntity<String> sendJsonMessage(@RequestBody MessageDto messageDto){
         jsonProducer.sendJsonMessage(messageDto);
+        messageDto.setDate(new Date(System.currentTimeMillis()));
         return ResponseEntity.ok("json message sent to RabbitMQ ...");
     }
 }
