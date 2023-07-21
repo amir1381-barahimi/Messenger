@@ -8,10 +8,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @AllArgsConstructor
@@ -19,7 +17,7 @@ import java.util.Date;
 @Data
 @Entity
 @Table(name = "messages")
-public class MessageEntity {
+public class MessageEntity implements Serializable {
     @Id
     private long id;
 
@@ -27,10 +25,14 @@ public class MessageEntity {
     private String text;
 
     @Column(nullable = false)
-    private UserDto sender;
+    private String sender;
 
-    @Column(nullable = false)
-    private Object receiver;
+//    @ManyToMany(cascade = CascadeType.ALL)
+//    @JoinTable(name = "message_user",
+//            joinColumns = @JoinColumn(name = "message_id"),
+//            inverseJoinColumns = @JoinColumn(name = "user_id")
+//    )
+    private String receiver;
 
     @Column(nullable = false)
     private Type type;

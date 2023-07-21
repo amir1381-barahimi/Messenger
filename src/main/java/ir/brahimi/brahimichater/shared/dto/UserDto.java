@@ -1,6 +1,7 @@
 package ir.brahimi.brahimichater.shared.dto;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
@@ -8,6 +9,7 @@ import java.util.ArrayList;
 
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 public class UserDto implements Serializable {
     private long id;
     private String publicId;
@@ -18,11 +20,11 @@ public class UserDto implements Serializable {
     private String encryptedPassword;
     private String email;
 
-    private ArrayList<UserDto> contacts = new ArrayList<>();
+//    private ArrayList<UserDto> contacts = new ArrayList<>();
 
-    private ArrayList<GroupDto> groups = new ArrayList<>();
-
-    private ArrayList<ChannelDto> channels = new ArrayList<>();
+//    private ArrayList<GroupDto> groups = new ArrayList<>();
+//
+//    private ArrayList<ChannelDto> channels = new ArrayList<>();
 
 
 

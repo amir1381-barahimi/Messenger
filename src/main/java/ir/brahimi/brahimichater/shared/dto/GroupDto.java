@@ -13,8 +13,8 @@ import java.util.Queue;
 @NoArgsConstructor
 @Data
 public class GroupDto {
+    private String groupName;
     private ArrayList<UserDto> members = new ArrayList<>();
     private ArrayList<UserDto> admins = new ArrayList<>();
     private Queue<MessageDto> chats = new PriorityQueue<>();
-
 }

@@ -2,12 +2,18 @@ package ir.brahimi.brahimichater.ui.contrller;
 
 import ir.brahimi.brahimichater.service.UserService;
 import ir.brahimi.brahimichater.shared.dto.UserDto;
+import ir.brahimi.brahimichater.ui.model.request.UserLoginRequestModel;
 import ir.brahimi.brahimichater.ui.model.request.UserRequestModel;
+import ir.brahimi.brahimichater.ui.model.response.UserLoginResponse;
 import ir.brahimi.brahimichater.ui.model.response.UserResponseModel;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.BeanUtils;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.naming.AuthenticationException;
 
 @RestController
 @RequestMapping("/users")
@@ -41,6 +47,19 @@ public class UserController {
         return returnValue;
     }
 
+    @PostMapping(value = "/login",consumes = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE }, produces = {
+            MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
+    public ResponseEntity<UserLoginResponse> register(@RequestBody UserLoginRequestModel userLoginRequestModel)throws AuthenticationException {
+        boolean result = userService.register(userLoginRequestModel);
+        UserLoginResponse returnValue = new UserLoginResponse();
+        returnValue.setUserName(userLoginRequestModel.getUserName());
+        returnValue.setStatus("authenticated");
+        if (result)
+            returnValue.setStatus(userLoginRequestModel.getUserName() + "authenticated");
+        else
+            throw new AuthenticationException("password is not correct!");
+        return new ResponseEntity<>(returnValue,HttpStatus.OK);
+    }
 
 
 

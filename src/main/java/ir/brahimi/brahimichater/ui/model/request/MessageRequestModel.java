@@ -15,10 +15,10 @@ import java.util.Date;
 @Data
 public class MessageRequestModel {
     private String text;
-    private UserDto sender;
-    private Object receiver;
-    private Type type;
-    private Status status;
+    private String sender;
+    private String receiver;
+    private String type;
+    private String status;
     private Date date;
 
 

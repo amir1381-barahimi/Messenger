@@ -1,19 +1,17 @@
-package ir.brahimi.brahimichater.shared.dto;
+package rabbirmq.client.Model.RequestModel;
 
-import ir.brahimi.brahimichater.shared.enums.Status;
-import ir.brahimi.brahimichater.shared.enums.Type;
-import ir.brahimi.brahimichater.ui.model.request.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import sun.util.calendar.BaseCalendar;
-
+import rabbirmq.client.Model.dto.UserDto;
+import rabbirmq.client.Model.enums.*;
 import java.util.Date;
+
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class MessageDto {
+public class MessageRequestModel {
     private String text;
     private String sender;
     private String receiver;

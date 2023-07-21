@@ -17,9 +17,9 @@ import java.util.Date;
 public class MessageResponseModel {
     private String publishId;
     private String text;
-    private UserDto senders;
-    private Object receiver;
-    private Status status = Status.SEND;
+    private String senders;
+    private String receiver;
+    private String status;
     private Date date;
 
 }

@@ -1,29 +1,46 @@
 package ir.brahimi.brahimichater.io.entity;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import java.io.Serializable;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Entity(name = "users")
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.ArrayList;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+@Entity(name = "user")
 public class UserEntity implements Serializable {
 
     @Id
     @GeneratedValue
     private long id;
-    @Column(nullable = false,length = 50)
+    @Column(length = 50)
     private String firstName;
-    @Column(nullable = false,length = 50)
+    @Column(length = 50)
     private String lastName;
     @Column(nullable = false,length = 100,unique = true)
     private String userName;
     @Column(nullable = false,length = 50)
     private String password;
-    @Column(nullable = false)
+    @Column()
     private String encryptedPassword;
+    @Column(length = 60)
     private String email;
+
+//    @ManyToMany(mappedBy = "members")
+//    private ArrayList<UserEntity> contact = new ArrayList<>();
+//
+//    @ManyToMany(mappedBy = "admins")
+//    private ArrayList<GroupEntity> groups = new ArrayList<>();
+//
+//    @ManyToMany(mappedBy = "admins")
+//    private ArrayList<ChannelEntity> channels = new ArrayList<>();
+
+
 
     public long getId() {
         return id;

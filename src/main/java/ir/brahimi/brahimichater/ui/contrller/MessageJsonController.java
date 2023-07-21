@@ -2,6 +2,8 @@ package ir.brahimi.brahimichater.ui.contrller;
 
 import ir.brahimi.brahimichater.publisher.RabbitMQJsonProducer;
 import ir.brahimi.brahimichater.shared.dto.MessageDto;
+import ir.brahimi.brahimichater.shared.dto.UserDto;
+import ir.brahimi.brahimichater.ui.model.request.MessageRequestModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -9,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/jsonRabbit")
+    @RequestMapping("/jsonRabbit")
 public class MessageJsonController {
 
     private RabbitMQJsonProducer jsonProducer;

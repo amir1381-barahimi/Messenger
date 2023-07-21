@@ -29,13 +29,13 @@ public class MessageServiceImpl implements MessageService {
     public MessageDto sendMessage(MessageDto messageDto) {
         ModelMapper modelMapper = new ModelMapper();
         messageDto.setDate(new Date(System.currentTimeMillis()));
-        if(messageDto.getReceiver() instanceof GroupDto){
-            messageDto.setType(Type.GROUP);
-        }else if(messageDto.getReceiver() instanceof ChannelDto){
-            messageDto.setType(Type.CHANNEL);
-        }else{
-            messageDto.setType(Type.PV);
-        }
+//        if(messageDto.getReceiver() instanceof GroupDto){
+//            messageDto.setType(Type.GROUP);
+//        }else if(messageDto.getReceiver() instanceof ChannelDto){
+//            messageDto.setType(Type.CHANNEL);
+//        }else{
+//            messageDto.setType(Type.PV);
+//        }
         MessageEntity messageEntity = modelMapper.map(messageDto,MessageEntity.class);
         MessageEntity storedMessage =  messageRepository.save(messageEntity);
         return modelMapper.map(storedMessage,MessageDto.class);

@@ -28,7 +28,7 @@ public class MessageController {
     public MessageResponseModel sendMessage(@RequestBody MessageRequestModel messageRequestModel){
         ModelMapper modelMapper = new ModelMapper();
         MessageDto messageDto =modelMapper.map(messageRequestModel,MessageDto.class);
-        MessageDto sevedMessage = messageService.sendMessage(messageDto);
-        return modelMapper.map(sevedMessage, MessageResponseModel.class);
+        MessageDto savedMessage = messageService.sendMessage(messageDto);
+        return modelMapper.map(savedMessage, MessageResponseModel.class);
     }
 }
