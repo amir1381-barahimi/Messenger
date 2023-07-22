@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.lang.reflect.Array;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 
 @RestController
@@ -26,7 +28,29 @@ public class MessageJsonController {
 
         @PostMapping("/publish")
     public ResponseEntity<String> sendJsonMessage(@RequestBody MessageDto messageDto){
-        jsonProducer.sendJsonMessage(messageDto);
+        ArrayList<String> channel = new ArrayList<>();
+        channel.add("amir");
+        channel.add("reza");
+
+        ArrayList<String> group = new ArrayList<>();
+        group.add("amir");
+        group.add("reza");
+
+        if (messageDto.getType().equals("PV")){
+            jsonProducer.sendJsonMessage(messageDto);
+        } else if (messageDto.getType().equals("CHANNEL")) {
+            for(String s:channel){
+                messageDto.setType("PV");
+                messageDto.setReceiver(s);
+                jsonProducer.sendJsonMessage(messageDto);
+            }
+        }else{
+            for(String s:group){
+                messageDto.setType("PV");
+                messageDto.setReceiver(s);
+                jsonProducer.sendJsonMessage(messageDto);
+            }
+        }
         messageDto.setDate(new Date(System.currentTimeMillis()));
         return ResponseEntity.ok("json message sent to RabbitMQ ...");
     }

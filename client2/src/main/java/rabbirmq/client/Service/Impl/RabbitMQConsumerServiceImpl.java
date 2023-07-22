@@ -18,7 +18,7 @@ public class RabbitMQConsumerServiceImpl implements RabbitMQConsumerService {
 
     @RabbitListener(queues = "${rabbitmq.queue.json.name}",ackMode = "MANUAL")
     public void consume(MessageRequestModel message, Channel channel , @Header(AmqpHeaders.DELIVERY_TAG) long tag) throws IOException, InterruptedException {
-        if(message.getReceiver().equals("amir")){
+        if(message.getReceiver().equals("reza")){
             channel.basicAck(tag , true);
         }else{
             Thread.sleep(10);
